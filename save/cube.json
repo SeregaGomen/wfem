@@ -1,0 +1,16 @@
+{
+ "Mesh": [
+  "cube.msh"
+ ],
+ "YoungModulus": "100\n",
+ "PoissonRatio": "0.3\n",
+ "Thickness": "1\n",
+ "VolumeLoad": "1;;X\n",
+ "SurfaceLoad": "",
+ "PointLoad": "",
+ "PressureLoad": "",
+ "BoundaryCondition": "0;x==0;X|Y|Z\n",
+ "Variables": "",
+ "Threads": 8,
+ "Eps": 1e-10
+}

@@ -1,0 +1,16 @@
+{
+ "Mesh": [
+  "shell4.mesh"
+ ],
+ "YoungModulus": "203200\n",
+ "PoissonRatio": "0.27\n",
+ "Thickness": "0.0369\n",
+ "VolumeLoad": "",
+ "SurfaceLoad": "",
+ "PointLoad": "",
+ "PressureLoad": "-0.05;\n",
+ "BoundaryCondition": "0;z == 0 or z == 4.014;X|Y|Z\n",
+ "Variables": "",
+ "Threads": 8,
+ "Eps": 1e-10
+}

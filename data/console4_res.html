@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>
+        FEM
+    </title>
+</head>
+<body>
+    <h1>The problem has been solving 05-06-2023 06:42:34</h1>
+
+    <h2>Results of calculation</h2>
+    Parameters of the stress-strain state:
+    <table border="1">
+        
+        <tr><td>Function</td><td>Min</td><td>Max</td></tr>
+        <tr><td>U</td><td>-2.984226e-01</td><td>&#43;2.984226e-01</td></tr>
+        <tr><td>V</td><td>&#43;0.000000e&#43;00</td><td>&#43;4.826499e&#43;00</td></tr>
+        <tr><td>Exx</td><td>-9.220060e-02</td><td>&#43;9.220060e-02</td></tr>
+        <tr><td>Eyy</td><td>&#43;0.000000e&#43;00</td><td>&#43;0.000000e&#43;00</td></tr>
+        <tr><td>Exy</td><td>-1.191316e-02</td><td>&#43;1.042656e-01</td></tr>
+        <tr><td>Sxx</td><td>-1.989011e&#43;02</td><td>&#43;1.989011e&#43;02</td></tr>
+        <tr><td>Syy</td><td>-5.370330e&#43;01</td><td>&#43;5.370330e&#43;01</td></tr>
+        <tr><td>Sxy</td><td>&#43;9.890110e-02</td><td>&#43;8.209890e&#43;01</td></tr>
+        
+    </table>
+
+    <h2>Mesh</h2>
+    File: data/console4.mesh<br/>Type: fe2d4<br/>Nodes: 22<br/>Finite elements: 10
+
+    <h2>Elasticity parameters</h2>
+    Young modulus:
+    <table border="1">
+        <tr><td>Value</td><td>Predicate</td></tr>
+        <tr><td>203200</td><td>x&gt;5</td></tr>
+        <tr><td>2000</td><td>x&lt;=5</td></tr>
+        
+    </table><br/>
+    Poisson's ratio:
+    <table border="1">
+        <tr><td>Value</td><td>Predicate</td></tr>
+        <tr><td>0.27</td><td></td></tr>
+        
+    </table>
+
+    <h2>Loads</h2>
+    
+    Volume load:
+        <table border="1">
+            <tr><td>Value</td><td>Predicate</td><td>X</td><td>Y</td><td>Z</td></tr>
+            <tr><td>1</td><td></td><td></td><td>&#43;</td><td></td></tr>
+            
+        </table>
+    
+    
+    
+    <h2>Boundary condition</h2>
+    <table border="1">
+        <tr><td>Value</td><td>Predicate</td><td>X</td><td>Y</td><td>Z</td></tr>
+        <tr><td>0</td><td>x==0</td><td>&#43;</td><td>&#43;</td><td></td></tr>
+        
+    </table>
+    <h2>Variables</h2>
+    eps=1e-06<br/>
+    
+</body>

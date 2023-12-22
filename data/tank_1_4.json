@@ -1,0 +1,14 @@
+{
+ "Mesh": "data/tank_1_4.mesh",
+ "YoungModulus": "6.5e+10;(abs(R * R - ((x - C) * (x - C) + y * y + z * z)) \u003c= eps and x \u003c= (R * cos(FI_T) + C)) or (abs(R * R - ((x - L + C) * (x - L + C) + y * y + z * z)) \u003c= eps and x \u003e= (R * cos(FI_B) + L - C))\n7.3e+10\n",
+ "PoissonRatio": "0.3\n",
+ "Thickness": "0.0046;((abs(R * R - ((x - C) * (x - C) + y * y + z * z)) \u003c= eps) and (x \u003c= (R * cos(FI_T) + C))) or ((abs(R * R - ((x - L + C) * (x - L + C) + y * y + z * z)) \u003c= eps) and (x \u003e= (R * cos(FI_B) + L - C)))\n0.05;((x \u003e= (R * cos(FI_T) + C)) and (x \u003c= 0)) or ((x \u003e= L) and (x \u003c= (R * cos(FI_B) + L - C))) or ((x \u003e= 4 * L3 - H / 2) and (x \u003c= 4 * L3 + H / 2))\n0.0255;((x \u003e= L3 - H / 2.0) and (x \u003c= L3 + H / 2)) or ((x \u003e= 2 * L3 - H / 2) and (x \u003c= 2 * L3 + H / 2)) or ((x \u003e= 5 * L3 - H / 2) and (x \u003c= 5 * L3 + H / 2)) or ((x \u003e= 6 * L3 - H / 2) and (x \u003c= 6 * L3 + H / 2)) or ((x \u003e= 6 * L3 - H / 2 + L4) and (x \u003c= 6 * L3 + H / 2 + L4))\n0.04;(x \u003e= 3 * L3 - H) and (x \u003c= 3 * L3 + H)\n0.0045;(x \u003e= 0 and x \u003c= (L3 - H / 2)) or (x \u003e= (L3 + H / 2) and x \u003c= (2 * L3 - H / 2)) or (x \u003e= (2 * L3 + H / 2) and x \u003c= (3 * L3 - H)) or (x \u003e= (4 * L3 + H / 2) and x \u003c= (5 * L3 - H / 2)) or (x \u003e= (5 * L3 + H / 2) and x \u003c= (6 * L3 - H / 2))\n0.0046;x\u003e= (3 * L3 + H) and x \u003c= (4 * L3 - H / 2)\n0.0052;(x \u003e= (6 * L3 + H / 2) and x \u003c= (6 * L3 - H / 2 + L4)) or (x \u003e= (6 * L3 + H / 2 + L4) and x \u003c= L)\n0.0143;x \u003c 0\n0.016\n\n",
+ "VolumeLoad": "",
+ "SurfaceLoad": "",
+ "PointLoad": "",
+ "PressureLoad": "P;x \u003e= 0 and x \u003c= L\nP;abs(R * R - ((x - C) * (x - C) + y * y + z * z)) \u003c= eps and x \u003c= (R * cos(FI_T) + C)\nP;abs(R * R - ((x - L + C) * (x - L + C) + y * y + z * z)) \u003c= eps and x \u003e= (R * cos(FI_B) + L - C)\nP;(x\u003e= (R * cos(FI_T) + C) and x \u003c= 0) and abs(y ** 2 + z ** 2 - K2_TOP * (x - CX_TOP) ** 2) \u003c eps\nP;(x \u003e= L and x \u003c= (R * cos(FI_B) + L - C)) and abs(y ** 2 + z ** 2  - K2_BOT * (x - CX_BOT) ** 2) \u003c eps\n",
+ "BoundaryCondition": "0;abs(x - 14.338) \u003c eps;X|Y|Z\n0;abs(y) \u003c eps;Y\n0;abs(z) \u003c eps;Z\n",
+ "Variables": "CX_BOT=20.7657\nL3=1.654\nL1=1.767\nFI_T=-2.26893\nC=1.454\nR=2.5\nK2_TOP=0.0520196\nL2=2.122\nH=0.06\nFI_B=-0.872665\neps=0.01\nP=142196\nCX_TOP=-8.5497\nL=12.216\nD=3.9\nK2_BOT=0.0520196\nL4=1.09\n",
+ "Threads": 8,
+ "Eps": 1e-10
+}

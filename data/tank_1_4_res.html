@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>
+        Web FEM Results
+    </title>
+</head>
+<body>
+    <h1>The problem has been solving 05-14-2023 07:34:43</h1>
+
+    <h2>Results of calculation</h2>
+    Parameters of the stress-strain state:
+    <table border="1">
+        
+        <tr><td>Function</td><td>Min</td><td>Max</td></tr>
+        <tr><td>U</td><td>-2.450345e-03</td><td>&#43;5.320784e-04</td></tr>
+        <tr><td>V</td><td>-1.476256e-03</td><td>&#43;9.205486e-05</td></tr>
+        <tr><td>W</td><td>-1.467017e-03</td><td>&#43;8.776300e-05</td></tr>
+        <tr><td>Tx</td><td>-3.010889e-03</td><td>&#43;2.753606e-03</td></tr>
+        <tr><td>Ty</td><td>-6.922405e-04</td><td>&#43;2.919577e-04</td></tr>
+        <tr><td>Tz</td><td>-6.499118e-04</td><td>&#43;2.821395e-04</td></tr>
+        <tr><td>Exx</td><td>-1.315923e-02</td><td>&#43;7.856079e-03</td></tr>
+        <tr><td>Eyy</td><td>-1.902850e-03</td><td>&#43;2.546952e-03</td></tr>
+        <tr><td>Ezz</td><td>-1.724500e-03</td><td>&#43;2.751571e-03</td></tr>
+        <tr><td>Exy</td><td>-2.482896e-03</td><td>&#43;2.247984e-03</td></tr>
+        <tr><td>Exz</td><td>-2.048779e-03</td><td>&#43;2.009250e-03</td></tr>
+        <tr><td>Eyz</td><td>-2.103372e-03</td><td>&#43;6.827996e-04</td></tr>
+        <tr><td>Sxx</td><td>-3.826392e&#43;06</td><td>&#43;2.913679e&#43;07</td></tr>
+        <tr><td>Syy</td><td>-4.322833e&#43;06</td><td>&#43;6.354127e&#43;07</td></tr>
+        <tr><td>Szz</td><td>-4.572404e&#43;06</td><td>&#43;6.345492e&#43;07</td></tr>
+        <tr><td>Sxy</td><td>-1.332005e&#43;07</td><td>&#43;1.201030e&#43;07</td></tr>
+        <tr><td>Sxz</td><td>-1.314332e&#43;07</td><td>&#43;1.265401e&#43;07</td></tr>
+        <tr><td>Syz</td><td>-3.145540e&#43;07</td><td>&#43;5.206645e&#43;06</td></tr>
+        
+    </table>
+
+    <h2>Mesh</h2>
+    File: data/tank_1_4.mesh<br />Type: fe3d3s<br />Nodes: 2143<br />Finite elements: 4122
+
+    <h2>Elasticity parameters</h2>
+    Young modulus:
+    <table border="1">
+        <tr><td>Value</td><td>Predicate</td></tr>
+        <tr><td>6.5e&#43;10</td><td>(abs(R * R - ((x - C) * (x - C) &#43; y * y &#43; z * z)) &lt;= eps and x &lt;= (R * cos(FI_T) &#43; C)) or (abs(R * R - ((x - L &#43; C) * (x - L &#43; C) &#43; y * y &#43; z * z)) &lt;= eps and x &gt;= (R * cos(FI_B) &#43; L - C))</td></tr>
+        <tr><td>7.3e&#43;10</td><td></td></tr>
+        
+    </table><br />
+    Poisson's ratio:
+    <table border="1">
+        <tr><td>Value</td><td>Predicate</td></tr>
+        <tr><td>0.3</td><td></td></tr>
+        
+    </table>
+
+    <h2>Loads</h2>
+    
+    
+    
+    
+    Pressure load:
+        <table border="1">
+            <tr><td>Value</td><td>Predicate</td></tr>
+            <tr><td>P</td><td>x &gt;= 0 and x &lt;= L</td></tr>
+            <tr><td>P</td><td>abs(R * R - ((x - C) * (x - C) &#43; y * y &#43; z * z)) &lt;= eps and x &lt;= (R * cos(FI_T) &#43; C)</td></tr>
+            <tr><td>P</td><td>abs(R * R - ((x - L &#43; C) * (x - L &#43; C) &#43; y * y &#43; z * z)) &lt;= eps and x &gt;= (R * cos(FI_B) &#43; L - C)</td></tr>
+            <tr><td>P</td><td>(x&gt;= (R * cos(FI_T) &#43; C) and x &lt;= 0) and abs(y ** 2 &#43; z ** 2 - K2_TOP * (x - CX_TOP) ** 2) &lt; eps</td></tr>
+            <tr><td>P</td><td>(x &gt;= L and x &lt;= (R * cos(FI_B) &#43; L - C)) and abs(y ** 2 &#43; z ** 2  - K2_BOT * (x - CX_BOT) ** 2) &lt; eps</td></tr>
+            
+        </table>
+    <h2>Boundary condition</h2>
+    <table border="1">
+        <tr><td>Value</td><td>Predicate</td><td>X</td><td>Y</td><td>Z</td></tr>
+        <tr><td>0</td><td>abs(x - 14.338) &lt; eps</td><td>&#43;</td><td>&#43;</td><td>&#43;</td></tr>
+        <tr><td>0</td><td>abs(y) &lt; eps</td><td></td><td>&#43;</td><td></td></tr>
+        <tr><td>0</td><td>abs(z) &lt; eps</td><td></td><td></td><td>&#43;</td></tr>
+        
+    </table>
+    <h2>Variables</h2>
+    C=1.454<br />
+    CX_BOT=20.7657<br />
+    CX_TOP=-8.5497<br />
+    D=3.9<br />
+    FI_B=-0.872665<br />
+    FI_T=-2.26893<br />
+    H=0.06<br />
+    K2_BOT=0.0520196<br />
+    K2_TOP=0.0520196<br />
+    L=12.216<br />
+    L1=1.767<br />
+    L2=2.122<br />
+    L3=1.654<br />
+    L4=1.09<br />
+    P=142196<br />
+    R=2.5<br />
+    eps=0.01<br />
+    
+</body>

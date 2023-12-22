@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>
+        Web FEM Results
+    </title>
+    <link href="../static/css/index.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    <h1>The problem has been solving {{.DateTime}}</h1>
+
+    <h2>Results of calculation</h2>
+    Parameters of the stress-strain state:
+    <table>
+        <!--<tr><th colspan="3">Results</th></tr>-->
+        <tr><td>Function</td><td>Min</td><td>Max</td></tr>
+        {{ range .Res -}}
+            <tr><td>{{.Name}}</td><td>{{printf "%+e" .Min}}</td><td>{{printf "%+e" .Max}}</td></tr>
+        {{ end }}
+    </table>
+
+    <h2>Mesh</h2>
+    File: {{.Mesh}}<br />Type: {{.FeName}}<br />Nodes: {{.NumVertex}}<br />Finite elements: {{.NumFE}}
+
+    <h2>Elasticity parameters</h2>
+    Young modulus:
+    <table>
+        <tr><td>Value</td><td>Predicate</td></tr>
+        {{ range .YoungModulus -}}
+            <tr><td>{{.Value}}</td><td>{{.Predicate}}</td></tr>
+        {{ end }}
+    </table><br />
+    Poisson's ratio:
+    <table>
+        <tr><td>Value</td><td>Predicate</td></tr>
+        {{ range .PoissonRatio -}}
+            <tr><td>{{.Value}}</td><td>{{.Predicate}}</td></tr>
+        {{ end }}
+    </table>
+
+    <h2>Loads</h2>
+    {{ $len := len .VolumeLoad }}
+    {{ if gt $len 0 -}}
+        Volume load:
+        <table>
+            <tr><td>Value</td><td>Predicate</td><td>X</td><td>Y</td><td>Z</td></tr>
+            {{ range .VolumeLoad -}}
+                <tr><td>{{.Value}}</td><td>{{.Predicate}}</td><td>{{isX .Direction}}</td><td>{{isY .Direction}}</td><td>{{isZ .Direction}}</td></tr>
+            {{ end }}
+        </table>
+    {{ end -}}
+    {{ $len := len .SurfaceLoad }}
+    {{ if gt $len 0 -}}
+        Surface load:
+        <table>
+            <tr><td>Value</td><td>Predicate</td><td>X</td><td>Y</td><td>Z</td></tr>
+            {{ range .SurfaceLoad -}}
+                <tr><td>{{.Value}}</td><td>{{.Predicate}}</td><td>{{isX .Direction}}</td><td>{{isY .Direction}}</td><td>{{isZ .Direction}}</td></tr>
+            {{ end }}
+        </table>
+    {{ end -}}
+    {{ $len := len .PointLoad }}
+    {{ if gt $len 0 -}}
+        Point load:
+        <table>
+            <tr><td>Value</td><td>Predicate</td><td>X</td><td>Y</td><td>Z</td></tr>
+            {{ range .PointLoad -}}
+                <tr><td>{{.Value}}</td><td>{{.Predicate}}</td><td>{{isX .Direction}}</td><td>{{isY .Direction}}</td><td>{{isZ .Direction}}</td></tr>
+            {{ end }}
+        </table>
+    {{ end -}}
+    {{ $len := len .PressureLoad }}
+    {{ if gt $len 0 -}}
+        Pressure load:
+        <table>
+            <tr><td>Value</td><td>Predicate</td></tr>
+            {{ range .PressureLoad -}}
+                <tr><td>{{.Value}}</td><td>{{.Predicate}}</td></tr>
+            {{ end }}
+        </table>
+    {{ end -}}
+
+    <h2>Boundary condition</h2>
+    <table>
+        <tr><td>Value</td><td>Predicate</td><td>X</td><td>Y</td><td>Z</td></tr>
+        {{ range .BoundaryCondition -}}
+            <tr><td>{{.Value}}</td><td>{{.Predicate}}</td><td>{{isX .Direction}}</td><td>{{isY .Direction}}</td><td>{{isZ .Direction}}</td></tr>
+        {{ end }}
+    </table>
+    {{ $len := len .Variables }}
+    {{ if gt $len 0 -}}
+        <h2>Variables</h2>
+        {{ range $key, $value := .Variables -}}
+            {{$key}}={{$value}}<br />
+        {{ end }}
+    {{ end -}}
+</body>
+</html>

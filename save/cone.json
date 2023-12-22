@@ -1,0 +1,16 @@
+{
+ "Mesh": [
+  "cone.msh"
+ ],
+ "YoungModulus": "1\n",
+ "PoissonRatio": "1\n",
+ "Thickness": "1\n",
+ "VolumeLoad": "1;;X\n",
+ "SurfaceLoad": "",
+ "PointLoad": "",
+ "PressureLoad": "",
+ "BoundaryCondition": "0;x==0;X\n",
+ "Variables": "",
+ "Threads": 8,
+ "Eps": 1e-10
+}

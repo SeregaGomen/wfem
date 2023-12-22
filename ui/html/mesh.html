@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web FEM</title>
+    <link href="../static/css/index.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    <h1>
+        Finite element method
+    </h1>
+    <form method="post" action="/info/" enctype="multipart/form-data">
+<!--        <form method="post" action="/mesh/" enctype="multipart/form-data">-->
+        <fieldset>
+            <legend>Mesh file name</legend>
+<!--            <input type="file" class="button button2" name="mesh_file" accept=".mesh, .msh, .vol">-->
+            <input type="file" name="mesh_file" accept=".mesh, .msh, .vol">
+        </fieldset>
+        <button class="button button1">Upload file</button>
+    </form>
+</body>
+</html>

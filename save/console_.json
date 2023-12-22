@@ -1,0 +1,16 @@
+{
+ "Mesh": [
+  "console_.mesh"
+ ],
+ "YoungModulus": "203200\n",
+ "PoissonRatio": "0.27\n",
+ "Thickness": "1\n",
+ "VolumeLoad": "",
+ "SurfaceLoad": "",
+ "PointLoad": "-1;x==10 and y==1;Y\n",
+ "PressureLoad": "",
+ "BoundaryCondition": "0;x==0;X|Y|Z\n",
+ "Variables": "",
+ "Threads": 8,
+ "Eps": 1e-10
+}

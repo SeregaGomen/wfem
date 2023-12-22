@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Web FEM</title>
+  <link href="../static/css/index.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+  <h1>
+    Finite element method
+  </h1>
+  <form method="post" action="/results/">
+    <fieldset>
+      <legend>Mesh</legend>
+      <label>File name:<br />
+        <select name="mesh" id="mesh">
+          <option value="" selected disabled hidden></option>
+          {{ $len := len .Mesh }}
+          {{ if gt $len 0 -}}
+            {{ range .Mesh -}}
+              {{ if eq $len 1 -}}
+                  <option selected value="{{.}}">{{.}}</option>
+              {{ else -}}
+                  <option value="{{.}}">{{.}}</option>
+              {{ end -}}
+            {{ end }}
+         {{ end }}
+        </select>
+      </label>
+    </fieldset>
+    <fieldset>
+      <legend>Base settings</legend>
+      <label>Threads:<br />
+        <input type="number" name="threads" value="{{.Threads}}" min="1">
+      </label><br />
+      <label>Tolerance:<br />
+        <input type="text" name="eps" value="{{.Eps}}">
+      </label><br />
+    </fieldset>
+
+    <fieldset>
+      <legend>Additional settings</legend>
+      <label>Variables:<br />
+        <textarea name="variables" rows="2" cols="80">{{.Variables}}</textarea>
+      </label><br />
+    </fieldset>
+
+    <fieldset>
+      <legend>Elastic parameters</legend>
+      <label>Young modulus (value;predicate):<br />
+        <textarea name="young_modulus" rows="2" cols="80">{{.YoungModulus}}</textarea>
+      </label><br />
+      <label>Poisson's ratio (value;predicate):<br />
+        <textarea name="poisson_ratio" rows="2" cols="80">{{.PoissonRatio}}</textarea><br />
+      </label>
+    </fieldset>
+    <fieldset>
+      <legend>Finite element parameters</legend>
+      <label>Thickness (value;predicate):<br />
+        <textarea name="thickness" rows="2" cols="80">{{.Thickness}}</textarea><br />
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Loads and boundary conditions</legend>
+      <label>Volume loads (value;predicate;direction):<br />
+        <textarea name="volume_load" rows="2" cols="80">{{.VolumeLoad}}</textarea><br />
+      </label>
+      <label>Point loads (value;predicate;direction):<br />
+        <textarea name="point_load" rows="2" cols="80">{{.PointLoad}}</textarea><br />
+      </label>
+      <label>Surface loads (value;predicate;direction):<br />
+        <textarea name="surface_load" rows="2" cols="80">{{.SurfaceLoad}}</textarea><br />
+      </label>
+      <label>Pressure loads (value;predicate):<br />
+        <textarea name="pressure_load" rows="2" cols="80">{{.PressureLoad}}</textarea><br />
+      </label>
+      <label>Boundary conditions (value;predicate;direction):<br />
+        <textarea name="boundary_condition" rows="2" cols="80">{{.BoundaryCondition}}</textarea><br />
+      </label>
+    </fieldset>
+    <button id="calculate">Calculate</button>
+  </form>
+</body>
+</html>
