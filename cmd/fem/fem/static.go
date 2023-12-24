@@ -2,17 +2,18 @@ package fem
 
 import (
 	"fmt"
-	"gonum.org/v1/gonum/mat"
 	"math"
 	"os"
 	"sync/atomic"
 	"time"
-	fe2 "wfem/cmd/fem/fe"
+	"wfem/cmd/fem/fe"
 	"wfem/cmd/fem/mesh"
 	"wfem/cmd/fem/params"
 	"wfem/cmd/fem/progress"
-	solver2 "wfem/cmd/fem/solver"
+	"wfem/cmd/fem/solver"
 	"wfem/cmd/fem/util"
+
+	"gonum.org/v1/gonum/mat"
 )
 
 type MatrixData struct {
@@ -28,7 +29,7 @@ type VectorData struct {
 
 type StaticFEM struct {
 	res    *mat.Dense
-	solver solver2.Solver
+	solver solver.Solver
 	mesh   mesh.Mesh
 	params params.FEMParameters
 }
@@ -89,8 +90,8 @@ func (fem *StaticFEM) Calculate() error {
 	var err error
 	fmt.Printf("Using threads: %d\n", fem.params.NumThread)
 	start := time.Now()
-	//fem.solver = solver.NewDenseSolver(&fem.mesh)
-	fem.solver = solver2.NewEigenSolver(&fem.mesh)
+	fem.solver = solver.NewDenseSolver(&fem.mesh)
+	//fem.solver = solver.NewEigenSolver(&fem.mesh)
 	if err = fem.calcGlobalMatrix(); err != nil {
 		return err
 	}
@@ -151,7 +152,7 @@ func (fem *StaticFEM) calcGlobalMatrix() error {
 			end = fem.mesh.NumFE()
 		}
 		go func() {
-			var elm fe2.FiniteElement
+			var elm fe.FiniteElement
 			var err error
 			defer func() {
 				errChan <- err
@@ -496,10 +497,10 @@ func (fem *StaticFEM) addSurfaceLoad() error {
 	return nil
 }
 
-func (fem *StaticFEM) createFE(index int) (fe2.FiniteElement, error) {
+func (fem *StaticFEM) createFE(index int) (fe.FiniteElement, error) {
 	cx := fem.mesh.FeCenter(index)
 	x := fem.mesh.FeCoord(index)
-	feParams := fe2.FiniteElementParameters{}
+	feParams := fe.FiniteElementParameters{}
 
 	youngModulus, err := fem.params.GetParamValue(cx, params.YoungModulus)
 	if err != nil {
@@ -522,49 +523,49 @@ func (fem *StaticFEM) createFE(index int) (fe2.FiniteElement, error) {
 
 	switch fem.mesh.FeType {
 	case mesh.Fe1d2:
-		shape, err := fe2.NewShape1d2(x)
+		shape, err := fe.NewShape1d2(x)
 		if err != nil {
 			return nil, err
 		}
-		return fe2.NewFE1D(shape, feParams), err
+		return fe.NewFE1D(shape, feParams), err
 	case mesh.Fe2d3:
-		shape, err := fe2.NewShape2d3(x)
+		shape, err := fe.NewShape2d3(x)
 		if err != nil {
 			return nil, err
 		}
-		return fe2.NewFE2D(shape, feParams), err
+		return fe.NewFE2D(shape, feParams), err
 	case mesh.Fe2d4:
-		shape, err := fe2.NewShape2d4(x)
+		shape, err := fe.NewShape2d4(x)
 		if err != nil {
 			return nil, err
 		}
-		return fe2.NewFE2D(shape, feParams), err
+		return fe.NewFE2D(shape, feParams), err
 	case mesh.Fe3d4:
-		shape, err := fe2.NewShape3d4(x)
+		shape, err := fe.NewShape3d4(x)
 		if err != nil {
 			return nil, err
 		}
-		return fe2.NewFE3D(shape, feParams), err
+		return fe.NewFE3D(shape, feParams), err
 	case mesh.Fe3d8:
-		shape, err := fe2.NewShape3d8(x)
+		shape, err := fe.NewShape3d8(x)
 		if err != nil {
 			return nil, err
 		}
-		return fe2.NewFE3D(shape, feParams), err
+		return fe.NewFE3D(shape, feParams), err
 	case mesh.Fe3d3s:
 		transformMatrix := util.TransformMatrix(x)
-		shape, err := fe2.NewShape2d3(util.Transpose(util.Mul(transformMatrix, x.T())))
+		shape, err := fe.NewShape2d3(util.Transpose(util.Mul(transformMatrix, x.T())))
 		if err != nil {
 			return nil, err
 		}
-		return fe2.NewFE3DS(shape, transformMatrix, feParams), err
+		return fe.NewFE3DS(shape, transformMatrix, feParams), err
 	case mesh.Fe3d4s:
 		transformMatrix := util.TransformMatrix(x)
-		shape, err := fe2.NewShape2d4(util.Transpose(util.Mul(transformMatrix, x.T())))
+		shape, err := fe.NewShape2d4(util.Transpose(util.Mul(transformMatrix, x.T())))
 		if err != nil {
 			return nil, err
 		}
-		return fe2.NewFE3DS(shape, transformMatrix, feParams), err
+		return fe.NewFE3DS(shape, transformMatrix, feParams), err
 	}
 	return nil, fmt.Errorf("bad finite element type")
 }
@@ -654,7 +655,7 @@ func (fem *StaticFEM) calcResult(u *mat.VecDense) error {
 			end = fem.mesh.NumFE()
 		}
 		go func() {
-			var elm fe2.FiniteElement
+			var elm fe.FiniteElement
 			defer func() {
 				errChan <- err
 			}()

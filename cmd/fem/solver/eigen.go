@@ -1,18 +1,21 @@
 package solver
 
+/*
+//#cgo CXXFLAGS: -std=c++20 -I../../../../../eigen
+#cgo CXXFLAGS: -std=c++20 -I../../../../../eigen -I/usr/include/mkl
+#cgo LDFLAGS: -L/lib/x86_64-linux-gnu -lmkl_intel_lp64 -lmkl_sequential -lmkl_core
+#include "eigen.h"
+*/
+
 import (
+	"C"
 	"fmt"
-	"gonum.org/v1/gonum/mat"
 	"unsafe"
 	"wfem/cmd/fem/mesh"
 	"wfem/cmd/fem/progress"
-)
 
-////#cgo CXXFLAGS: -std=c++20 -I../../../../../eigen
-//#cgo CXXFLAGS: -std=c++20 -I../../../../../eigen -I/usr/include/mkl
-//#cgo LDFLAGS: -L/lib/x86_64-linux-gnu -lmkl_intel_lp64 -lmkl_sequential -lmkl_core
-//#include "eigen.h"
-import "C"
+	"gonum.org/v1/gonum/mat"
+)
 
 type EigenSolver struct {
 	size int
