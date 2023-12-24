@@ -1,9 +1,9 @@
 package solver
 
 /*
-//#cgo CXXFLAGS: -std=c++20 -I../../../../../eigen
-#cgo CXXFLAGS: -std=c++20 -I../../../../../eigen -I/usr/include/mkl
-#cgo LDFLAGS: -L/lib/x86_64-linux-gnu -lmkl_intel_lp64 -lmkl_sequential -lmkl_core
+#cgo CXXFLAGS: -std=c++20 -I../../../../../eigen
+//#cgo CXXFLAGS: -std=c++20 -I../../../../../eigen -I/usr/include/mkl
+//#cgo LDFLAGS: -L/lib/x86_64-linux-gnu -lmkl_intel_lp64 -lmkl_sequential -lmkl_core
 #include "eigen.h"
 */
 
